@@ -9,6 +9,9 @@ env:
   global:
     - CODECOV_TOKEN="56d8f5c0-b5aa-4e44-a4cb-f72870afe838"
 
+script:
+  - mvn test -B
+
 # после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
 # Здесь используется сторонний сервис https://codecov.io/
 after_success:
