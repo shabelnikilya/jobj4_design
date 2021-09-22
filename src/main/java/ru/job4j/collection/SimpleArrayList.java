@@ -69,7 +69,7 @@ public class SimpleArrayList<T> implements List<T> {
             public T next() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
-                } else if (cursor >= size) {
+                } else if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 return container[cursor++];
