@@ -36,12 +36,11 @@ public class SimpleLinkedList<E> implements List<E> {
     public Iterator<E> iterator() {
         return new Iterator<>() {
             Node<E> nextNode = first;
-            int cursor;
             int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {
-                return cursor < size;
+                return nextNode != null;
             }
 
             @Override
@@ -53,7 +52,6 @@ public class SimpleLinkedList<E> implements List<E> {
                 }
                 E rsl = nextNode.item;
                 nextNode = nextNode.next;
-                cursor++;
                 return rsl;
             }
         };
