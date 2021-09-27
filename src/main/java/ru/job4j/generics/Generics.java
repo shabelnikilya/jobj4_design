@@ -19,14 +19,12 @@ public class Generics {
         gen.printObject(third);
         System.out.println();
 
-//        gen.printBoundedWildCard(first); // Т.к сверху ограничен классом Predator.
         gen.printBoundedWildCard(second);
         gen.printBoundedWildCard(third);
         System.out.println();
 
         gen.printLowerBoundedWildCard(first);
         gen.printLowerBoundedWildCard(second);
- //       gen.printLowerBoundedWildCard(third); // Т.к снизу ограничен классом Predator.
     }
 
     public void printObject(List<?> list) {

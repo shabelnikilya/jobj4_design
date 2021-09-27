@@ -9,6 +9,7 @@ import static org.junit.Assert.*;
 
 public class SimpleMapTest {
 
+
     @Test
     public void whenPutThirdPair() {
         SimpleMap<Integer, String> run = new SimpleMap<>();
