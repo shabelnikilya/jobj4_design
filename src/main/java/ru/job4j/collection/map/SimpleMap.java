@@ -5,13 +5,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SimpleMap<K, V> implements Map<K, V> {
-
     private static final float LOAD_FACTOR = 0.75f;
-
     private int capacity = 8;
-
     private int count = 0;
-
     private int modCount = 0;
 
     private MapEntry<K, V>[] table = new MapEntry[capacity];
@@ -52,7 +48,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         for (MapEntry<K, V> k : table) {
-            if (k != null && key.equals(k.key)) {
+            if (k != null && k.key.equals(key)) {
                 return k.value;
             }
         }
