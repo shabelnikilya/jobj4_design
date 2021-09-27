@@ -3,13 +3,13 @@ package ru.job4j.collection.map;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class SimpleMap<K, V> implements Map<K, V> {
     private static final float LOAD_FACTOR = 0.75f;
     private int capacity = 8;
     private int count = 0;
     private int modCount = 0;
-
     private MapEntry<K, V>[] table = new MapEntry[capacity];
 
     @Override
@@ -17,7 +17,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         if (((float) count / capacity) >= LOAD_FACTOR) {
             expand();
         }
-        int index = indexFor(hash(key.hashCode()));
+        int index = indexFor(hash(key == null ? 0 : key.hashCode()));
         if (table[index] == null) {
             table[index] = new MapEntry<>(key, value);
             count++;
@@ -48,7 +48,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public V get(K key) {
         for (MapEntry<K, V> k : table) {
-            if (k != null && k.key.equals(key)) {
+            if (k != null && Objects.equals(k.key, key)) {
                 return k.value;
             }
         }
@@ -73,7 +73,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return new Iterator<>() {
             private int cursor;
             private int index;
-            private int expectedModCount = modCount;
+            private final int expectedModCount = modCount;
 
             @Override
             public boolean hasNext() {

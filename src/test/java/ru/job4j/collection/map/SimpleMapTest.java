@@ -1,7 +1,6 @@
 package ru.job4j.collection.map;
 
 import org.junit.Test;
-
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -35,6 +34,15 @@ public class SimpleMapTest {
         run.put(22, "Igor");
         run.put(36, "Jora");
         assertThat(run.get(22), is("Igor"));
+    }
+
+    @Test
+    public void whenGetKeyNullValueRoma() {
+        SimpleMap<Integer, String> run = new SimpleMap<>();
+        run.put(null, "Roma");
+        run.put(22, "Igor");
+        run.put(36, "Jora");
+        assertThat(run.get(null), is("Roma"));
     }
 
     @Test
