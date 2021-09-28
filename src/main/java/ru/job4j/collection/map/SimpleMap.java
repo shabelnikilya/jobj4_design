@@ -58,7 +58,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     public boolean remove(K key) {
         int index = indexFor(hash(key == null ? 0 : key.hashCode()));
         if (table[index] != null
-                && hash(key.hashCode()) == hash(table[index].key.hashCode())
+                && hash(key == null ? 0 : key.hashCode()) == hash(table[index].key.hashCode())
                 && Objects.equals(key, table[index].key) ) {
             table[index] = null;
             count--;
