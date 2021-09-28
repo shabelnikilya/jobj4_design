@@ -14,7 +14,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if (((float) count / capacity) >= LOAD_FACTOR) {
+        if (count >= capacity * LOAD_FACTOR) {
             expand();
         }
         int index = indexFor(hash(key == null ? 0 : key.hashCode()));
@@ -39,7 +39,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V>[] copyTable = new MapEntry[capacity *= 2];
         for (MapEntry<K, V> copy : table) {
             if (copy != null) {
-                copyTable[indexFor(hash(copy.hashCode()))] = copy;
+                copyTable[indexFor(hash(copy.key.hashCode()))] = copy;
             }
         }
         table = copyTable;
