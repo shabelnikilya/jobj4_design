@@ -15,14 +15,17 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(
                 new FileReader(path))) {
-           List<String> l =  read.lines().filter(x -> !"".equals(x) && x.charAt(0) != '#')
-                    .collect(Collectors.toList());
-           for (String kAndV : l) {
-               if (kAndV.charAt(0) == '=' || kAndV.indexOf('=') == -1) {
-                   throw new IllegalArgumentException();
-               }
-               values.put(kAndV.split("=")[0], kAndV.split("=")[1]);
-           }
+            values.putAll(read.lines()
+                    .filter(x -> !"".equals(x) && x.charAt(0) != '#')
+                    .peek(x -> {
+                        if (x.indexOf('=') == -1 || x.charAt(0) == '='
+                                || x.charAt(x.length() - 1) == '=') {
+                            throw new IllegalArgumentException();
+                        }
+                    })
+                    .collect(Collectors.toMap(k -> k.split("=")[0],
+                            v -> v.split("=")[1])));
+
         } catch (IOException e) {
             e.printStackTrace();
         }

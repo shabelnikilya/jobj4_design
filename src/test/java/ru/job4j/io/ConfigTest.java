@@ -35,6 +35,14 @@ public class ConfigTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void whenPairWithNullValue() {
+        String path = "data/data_with_nullValue.properties";
+        Config config = new Config(path);
+        config.load();
+        config.value("Jora");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void whenPairWithException() {
         String path = "data/data_withIllegalArgument.properties";
         Config config = new Config(path);
