@@ -13,7 +13,7 @@ public class Dir {
         }
         System.out.printf("length : %s%n", file.length());
         for (File subfile : file.listFiles()) {
-            System.out.println(subfile.getName());
+            System.out.println("name: " + subfile.getName() + " / size = " + subfile.length());
         }
     }
 }
