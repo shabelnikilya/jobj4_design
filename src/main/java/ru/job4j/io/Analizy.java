@@ -9,13 +9,14 @@ public class Analizy {
             boolean trouble = false;
             String line = reader.readLine();
             while (line != null) {
-                if (("400".equals(line.split(" ")[0]) && !trouble)
-                        || ("500".equals(line.split(" ")[0]) && !trouble)) {
-                    out.print(line.split(" ")[1] + ";");
+                String[] lineSplit = line.split(" ");
+                if (("400".equals(lineSplit[0]) && !trouble)
+                        || ("500".equals(lineSplit[0]) && !trouble)) {
+                    out.print(lineSplit[1] + ";");
                     trouble = true;
-            } else if (trouble && !"400".equals(line.split(" ")[0])
-                        && !"500".equals(line.split(" ")[0]))  {
-                    out.println(line.split(" ")[1] + ";");
+            } else if (trouble && !"400".equals(lineSplit[0])
+                        && !"500".equals(lineSplit[0]))  {
+                    out.println(lineSplit[1] + ";");
                     trouble = false;
                 }
                 line = reader.readLine();
