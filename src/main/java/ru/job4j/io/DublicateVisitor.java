@@ -16,12 +16,15 @@ public class DublicateVisitor extends SimpleFileVisitor<Path> {
                 , file.toFile().getName());
         if (findCopy.containsKey(key)) {
             findCopy.get(key).add(file);
-
         } else {
             List<Path> val = new ArrayList<>();
             val.add(file);
             findCopy.put(key, val);
         }
+        return super.visitFile(file, attrs);
+    }
+
+    public void watchDuplicate() {
         for (FileProperty f : findCopy.keySet()) {
             if (findCopy.get(f).size() > 1) {
                 for (Path p : findCopy.get(f)) {
@@ -29,6 +32,5 @@ public class DublicateVisitor extends SimpleFileVisitor<Path> {
                 }
             }
         }
-        return super.visitFile(file, attrs);
     }
 }
