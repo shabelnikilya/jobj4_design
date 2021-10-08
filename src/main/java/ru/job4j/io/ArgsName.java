@@ -1,6 +1,5 @@
 package ru.job4j.io;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,7 @@ public class ArgsName {
         }
         for (String in : args) {
             String[] splitIn = in.split("=");
-            if (splitIn.length < 2) {
+            if (splitIn.length < 2 || splitIn[0].charAt(0) != '-') {
                 throw new IllegalArgumentException("Incorrect entry of a key / value pair");
             }
             values.put(splitIn[0].substring(1), splitIn[1]);

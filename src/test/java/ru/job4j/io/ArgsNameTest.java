@@ -29,4 +29,20 @@ public class ArgsNameTest {
     public void whenWrongSomeArgument() {
         ArgsName jvm = ArgsName.of(new String[] {"-enconding=UTF-8", "-Xmx="});
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenMissingDash() {
+        ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "Xmx=512"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenMissingEually() {
+        ArgsName jvm = ArgsName.of(new String[] {"-encoding=UTF-8", "Xmx512"});
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void whenMissingEuallyAndDash() {
+        ArgsName jvm = ArgsName.of(new String[] {"encoding=UTF-8", "Xmx512"});
+    }
 }
+
