@@ -9,16 +9,19 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        if (args.length < 2 || args[0] == null) {
+        validArgs(args);
+        search(Paths.get(args[0]), p -> p.toFile()
+                .getName()
+                .endsWith(args[1]))
+                .forEach(System.out::println);
+    }
+
+    public static void validArgs(String[] args) {
+        if (args.length < 2 || args[0] == null
+        || !Files.isDirectory(Paths.get(args[0])) || !Files.exists(Paths.get(args[0]))) {
             throw new IllegalArgumentException("Root folder is null. " +
                     "Usage java -jar SearchFiles.jar ROOT_FOLDER.");
         }
-        Path start = Paths.get(args[0]);
-        if (!Files.isDirectory(start) || !Files.exists(start)) {
-            throw new IllegalArgumentException("Root folder is null. " +
-                    "Usage java -jar SearchFiles.jar ROOT_FOLDER.");
-        }
-        search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) throws IOException {
