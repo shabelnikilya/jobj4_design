@@ -42,12 +42,16 @@ public class Zip {
         return a;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         ArgsName getV = validInputArgs(args);
         SearchFiles searcher = new SearchFiles(p -> !p.toFile()
                 .getName()
                 .endsWith(getV.get("e").substring(1)));
-        Files.walkFileTree(Paths.get(getV.get("d")), searcher);
+        try {
+            Files.walkFileTree(Paths.get(getV.get("d")), searcher);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<File> in = searcher.getPaths().stream()
                 .map(Path::toFile)
                 .collect(Collectors.toList());
