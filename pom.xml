@@ -29,6 +29,11 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -75,10 +80,10 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <finalName>SearchFiles</finalName>
+              <finalName>ZipFolder</finalName>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>ru.job4j.io.Search</mainClass>
+                  <mainClass>ru.job4j.io.Zip</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -87,5 +92,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
