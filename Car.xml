@@ -1,0 +1,8 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<car sportCar="false" speedCar="140" model="BMW X2">
+    <engine power="156"/>
+    <colorses>
+        <colors>Yellow</colors>
+        <colors>Black</colors>
+    </colorses>
+</car>
