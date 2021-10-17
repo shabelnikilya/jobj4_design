@@ -34,6 +34,46 @@ public class Car {
         this.colors = colors;
     }
 
+    public boolean isSportCar() {
+        return sportCar;
+    }
+
+    public void setSportCar(boolean sportCar) {
+        this.sportCar = sportCar;
+    }
+
+    public int getSpeedCar() {
+        return speedCar;
+    }
+
+    public void setSpeedCar(int speedCar) {
+        this.speedCar = speedCar;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public String[] getColors() {
+        return colors;
+    }
+
+    public void setColors(String... colors) {
+        this.colors = colors;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
