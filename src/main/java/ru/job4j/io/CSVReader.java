@@ -25,7 +25,7 @@ public class CSVReader {
             try (BufferedInputStream in = new BufferedInputStream(
                     new FileInputStream(pathCsv))) {
                 sc = new Scanner(in);
-                if(!sc.hasNext()) {
+                if (!sc.hasNext()) {
                     throw new IllegalArgumentException("File is empty");
                 }
             } catch (IOException e) {
@@ -35,17 +35,18 @@ public class CSVReader {
         }
 
         public static void writeInFileOrConsole(String pathToFile, StringBuilder outString) {
+            if (pathToFile == null) {
+                throw new IllegalArgumentException("Incorrect value of the 'out' key");
+            }
             if ("stdout".equals(pathToFile)) {
                 System.out.println(outString);
-            } else if (pathToFile != null) {
+            } else {
                 try (BufferedWriter out = new BufferedWriter(
                         new FileWriter(pathToFile))) {
                     out.write(outString.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            } else {
-                throw new IllegalArgumentException("Invalid key is value - out");
             }
         }
 
@@ -55,11 +56,11 @@ public class CSVReader {
             List<String> filter = List.of(f);
             Scanner line = new Scanner(scanner.nextLine())
                                         .useDelimiter(del);
-            String col;
+            String column;
             while (line.hasNext()) {
-                if (filter.contains(col = line.next())) {
+                if (filter.contains(column = line.next())) {
                     indexColumn.add(ind);
-                    firstLine.append(col).append(del);
+                    firstLine.append(column).append(del);
                 }
                 ind++;
             }
@@ -72,9 +73,9 @@ public class CSVReader {
             while (sc.hasNext()) {
                 Scanner scanLine = new Scanner(sc.nextLine()).useDelimiter(del);
                 while (scanLine.hasNext()) {
-                    String a = scanLine.next();
+                    String scanWords = scanLine.next();
                     if (indexColumn.contains(indOut)) {
-                        csv.append(a).append(del);
+                        csv.append(scanWords).append(del);
                     }
                     indOut++;
                 }
@@ -84,12 +85,16 @@ public class CSVReader {
             }
         }
 
-    public static void main(String[] args) {
-        if (args.length < 4) {
-            throw new IllegalArgumentException("Incorrect input data: args");
+        public static void validArgs(String[] args) {
+            if (args.length < 4) {
+                throw new IllegalArgumentException("Incorrect input data: args");
+            }
         }
-        ArgsName a = new ArgsName();
-        a.parse(args);
-        handle(a);
+
+    public static void main(String[] args) {
+        validArgs(args);
+        ArgsName pairKeyVal = new ArgsName();
+        pairKeyVal.parse(args);
+        handle(pairKeyVal);
     }
 }
