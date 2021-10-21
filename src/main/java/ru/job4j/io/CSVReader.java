@@ -18,8 +18,6 @@ public class CSVReader {
                 filterColumn(filterValue, sc, str, delim);
                 filterLine(sc, str, delim);
                 writeInFileOrConsole(pathOut, str);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 
