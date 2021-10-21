@@ -14,10 +14,13 @@ public class CSVReader {
             String path = argsName.get("path");
             String pathOut = argsName.get("out");
             StringBuilder str = new StringBuilder();
-            Scanner sc = scanRead(path);
-            filterColumn(filterValue, sc, str, delim);
-            filterLine(sc, str, delim);
-            writeInFileOrConsole(pathOut, str);
+            try (Scanner sc = scanRead(path)) {
+                filterColumn(filterValue, sc, str, delim);
+                filterLine(sc, str, delim);
+                writeInFileOrConsole(pathOut, str);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         public static Scanner scanRead(String pathCsv) {
