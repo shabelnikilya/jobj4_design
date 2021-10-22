@@ -1,17 +1,25 @@
-create table users(
-	id serial primary key,
-	name text,
-	secondName text,
-	age int
-);
 create table role(
 	id serial primary key,
-	name text,
-	users_id int references users(id)
+	name text
 );
 create table privelege(
 	id serial primary key,
 	namePrivelege text
+);
+create table category(
+	id serial primary key,
+	name text
+);
+create table state(
+	id serial primary key,
+	status text
+);
+create table users(
+	id serial primary key,
+	name text,
+	secondName text,
+	age int,
+	role_id int references role(id)
 );
 create table privelege_role(
 	id serial primary key,
@@ -20,27 +28,19 @@ create table privelege_role(
 );
 create table item(
 	id serial primary key,
-	textItem text
+	textItem text,
+	users_id int references users(id),
+    category_id int references category(id),
+	state_id int references state(id)
 );
-ALTER TABLE users ADD COLUMN item_id int references item(id)
 create table comments(
-	id serial primary key,
-	textComments text
+    id serial primary key,
+    textComments text,
+    item_id int references item(id)
 );
-ALTER TABLE item ADD COLUMN comments_id int references comments(id)
 create table attachs(
 	id serial primary key,
 	nameFile text,
-	size int
-);
-ALTER TABLE item ADD COLUMN attachs_id int references attachs(id)
-create table category(
-	id serial primary key,
-	name text,
-	item_id int references item(id)
-);
-create table state(
-	id serial primary key,
-	status text,
+	size int,
 	item_id int references item(id)
 );
