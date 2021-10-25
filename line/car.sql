@@ -54,19 +54,11 @@ as Тип_двигателя, t.type_transmiss as Тип_трансмиссии
 from car c join body b on c.body_id = b.id join engine e on c.body_id = e.id
 join transmission t on c.body_id = t.id;
 
-
-select t.type_transmiss into iterTr from transmission t left join car c on c.transmiss_id = t.id
+select t.type_transmiss from transmission t left join car c on c.transmiss_id = t.id
 where c.transmiss_id is null;
 
-select * from iterTr limit 1;
-delete from iterTr i where i.type_transmiss = (select * from iterTr limit 1);
+select e.type_engine from engine e left join car c on c.engine_id = e.id
+where c.engine_id is null;
 
-select e.type_engine into iterEn from engine e left join car c on c.engine_id = e.id where c.engine_id is null;
-
-select * from iterEn limit 1;
-delete from iterEn i where i.type_engine = (select * from iterEn limit 1);
-
-select b.type_body into iterB from body b left join car c on c.body_id = b.id where c.body_id is null;
-
-select * from iterB limit 1;
-delete from iterB i where i.type_body = (select * from iterB limit 1);
+select b.type_body from body b left join car c on c.body_id = b.id
+where c.body_id is null;
