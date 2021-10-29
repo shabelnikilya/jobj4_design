@@ -32,59 +32,50 @@ public class TableEditor implements AutoCloseable {
         connection = DriverManager.getConnection(url, login, password);
     }
 
-    public void makeOperationWithTable(String operationWithTable, String... characteristic) throws SQLException {
+    public void makeOperationWithTable(String operationWithTable) throws SQLException {
         try (Statement statement = connection.createStatement()) {
-            String sql = switch (operationWithTable) {
-                case ("create table") -> String.format(
-                        "create table if not exists %s();",
-                        characteristic[0]
-                );
-                case ("drop table") -> String.format(
-                        "drop table if exists %s;",
-                        characteristic[0]
-                );
-                case ("add column") -> String.format(
-                        "alter table if exists %s add column %s %s;",
-                        characteristic[0],
-                        characteristic[1],
-                        characteristic[2]
-                );
-                case ("drop column") -> String.format(
-                        "alter table if exists %s drop column %s;",
-                        characteristic[0],
-                        characteristic[1]
-                );
-                case ("rename column") -> String.format(
-                        "alter table if exists %s rename column %s to %s;",
-                        characteristic[0],
-                        characteristic[1],
-                        characteristic[2]
-                );
-                default -> throw new IllegalArgumentException("Incorect operation with the table. " +
-                        "Check the input parameter - operationWithTable");
-            };
-            statement.execute(sql);
+            statement.execute(operationWithTable);
         }
     }
 
     public void createTable(String tableName) throws SQLException, ClassNotFoundException {
-        makeOperationWithTable("create table", tableName);
+        makeOperationWithTable(String.format(
+                "create table if not exists %s();",
+                tableName
+        ));
     }
 
     public void dropTable(String tableName) throws SQLException {
-        makeOperationWithTable("drop table", tableName);
+        makeOperationWithTable(String.format(
+                        "drop table if exists %s;",
+                        tableName
+        ));
     }
 
     public void addColumn(String tableName, String columnName, String type) throws SQLException {
-        makeOperationWithTable("add column", tableName, columnName, type);
+        makeOperationWithTable(String.format(
+                "alter table if exists %s add column %s %s;",
+                        tableName,
+                        columnName,
+                        type
+        ));
     }
 
     public void dropColumn(String tableName, String columnName) throws SQLException {
-        makeOperationWithTable("drop column", tableName, columnName);
+        makeOperationWithTable(String.format(
+                        "alter table if exists %s drop column %s;",
+                        tableName,
+                        columnName
+        ));
     }
 
     public void renameColumn(String tableName, String columnName, String newColumnName) throws SQLException {
-        makeOperationWithTable("rename column", tableName, columnName, newColumnName);
+        makeOperationWithTable(String.format(
+                        "alter table if exists %s rename column %s to %s;",
+                        tableName,
+                        columnName,
+                        newColumnName
+        ));
     }
 
 
