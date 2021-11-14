@@ -19,11 +19,11 @@ public class MaxMinTest {
 
     @Test
     public void max() {
-        assertThat(7, is(maxMin.max(list, Comparator.comparingInt(x -> x))));
+        assertThat(maxMin.max(list, Comparator.comparingInt(x -> x)), is(7));
     }
 
     @Test
     public void min() {
-            assertThat(1, is(maxMin.min(list, Comparator.comparingInt(x -> x))));
+            assertThat(maxMin.min(list, Comparator.comparingInt(x -> x)), is(1));
     }
 }
