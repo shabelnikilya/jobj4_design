@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class MaxMin {
+
     static <T> T findMaxOrMin(List<T> value, Comparator<T> comparator, Predicate<Integer> pred) {
         T rsl = value.get(0);
         for (int i = 1; i < value.size(); i++) {

@@ -9,21 +9,21 @@ import static org.hamcrest.core.Is.is;
 
 public class MaxMinTest {
     List<Integer> list;
+    MaxMin maxMin;
 
     @Before
     public void initList() {
         list = List.of(1, 7, 3, 4);
+        maxMin = new MaxMin();
     }
 
     @Test
     public void max() {
-        MaxMin m = new MaxMin();
-        assertThat(7, is(m.max(list, Comparator.comparingInt(x -> x))));
+        assertThat(7, is(maxMin.max(list, Comparator.comparingInt(x -> x))));
     }
 
     @Test
     public void min() {
-            MaxMin m = new MaxMin();
-            assertThat(1, is(m.min(list, Comparator.comparingInt(x -> x))));
+            assertThat(1, is(maxMin.min(list, Comparator.comparingInt(x -> x))));
     }
 }
