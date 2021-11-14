@@ -7,7 +7,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class Cinema3DTest {
-
     @Test
     public void add() {
         Cinema cinema = new Cinema3D();
