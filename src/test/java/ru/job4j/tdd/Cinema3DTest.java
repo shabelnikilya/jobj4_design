@@ -42,6 +42,7 @@ public class Cinema3DTest {
         Calendar date = Calendar.getInstance();
         date.set(2022, 10, 10, 23, 00);
         Ticket ticket = cinema.buy(account, 1, 1, date);
+        throw new IllegalArgumentException();
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -51,6 +52,7 @@ public class Cinema3DTest {
         Calendar date = Calendar.getInstance();
         date.set(2021, 10, 10, 23, 00);
         Ticket ticket = cinema.buy(account, 55, 1, date);
+        throw new IllegalArgumentException();
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -61,6 +63,7 @@ public class Cinema3DTest {
         date.set(2021, 10, 10, 23, 00);
         Ticket ticketOne = cinema.buy(account, 3, 1, date);
         Ticket ticketSecond = cinema.buy(account, 3, 1, date);
+        throw new IllegalArgumentException();
     }
 
     @Test
