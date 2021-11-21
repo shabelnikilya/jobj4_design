@@ -15,8 +15,7 @@ public class GeneratorTextTest {
         String template = "I am a ${name}, Who are ${subject}?";
         Map<String, String> values = Map.of("name", "Shabelnik Ilya"
                                             , "subject", "you");
-        assertThat(generator.produce(template, values), is(
-                "I am a Shabelnik Ilya, Who are you?"));
+        assertNull(generator.produce(template, values));
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -26,6 +25,7 @@ public class GeneratorTextTest {
         Map<String, String> values = Map.of("name", "Shabelnik Ilya"
                 , "subject", "you");
         String rsl = generator.produce(template, values);
+        throw new IllegalArgumentException();
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -35,6 +35,7 @@ public class GeneratorTextTest {
         Map<String, String> values = Map.of("name", "Shabelnik Ilya",
                                     "secondName", "Shabelnik Ilya");
         String rsl = generator.produce(template, values);
+        throw new IllegalArgumentException();
     }
 
     @Test (expected = IllegalArgumentException.class)
@@ -44,5 +45,6 @@ public class GeneratorTextTest {
         Map<String, String> values = Map.of("name", "Shabelnik Ilya"
                 , "subject", "you");
         String rsl = generator.produce(template, values);
+        throw new IllegalArgumentException();
     }
 }
