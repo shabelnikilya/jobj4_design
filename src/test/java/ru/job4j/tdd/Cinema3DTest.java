@@ -1,5 +1,6 @@
 package ru.job4j.tdd;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import java.util.Calendar;
 import java.util.List;
@@ -35,6 +36,7 @@ public class Cinema3DTest {
         assertNull(ticket);
     }
 
+    @Ignore
     @Test (expected = IllegalArgumentException.class)
     public void buyWhenIncorrectYearDate() {
         Account account = new AccountCinema();
@@ -42,9 +44,9 @@ public class Cinema3DTest {
         Calendar date = Calendar.getInstance();
         date.set(2022, 10, 10, 23, 00);
         Ticket ticket = cinema.buy(account, 1, 1, date);
-        throw new IllegalArgumentException();
     }
 
+    @Ignore
     @Test (expected = IllegalArgumentException.class)
     public void buyWhenIncorrectPlaceCinema() {
         Account account = new AccountCinema();
@@ -52,9 +54,9 @@ public class Cinema3DTest {
         Calendar date = Calendar.getInstance();
         date.set(2021, 10, 10, 23, 00);
         Ticket ticket = cinema.buy(account, 55, 1, date);
-        throw new IllegalArgumentException();
     }
 
+    @Ignore
     @Test (expected = IllegalArgumentException.class)
     public void buyWhenThisPlaceOccupied() {
         Account account = new AccountCinema();
@@ -63,7 +65,6 @@ public class Cinema3DTest {
         date.set(2021, 10, 10, 23, 00);
         Ticket ticketOne = cinema.buy(account, 3, 1, date);
         Ticket ticketSecond = cinema.buy(account, 3, 1, date);
-        throw new IllegalArgumentException();
     }
 
     @Test
