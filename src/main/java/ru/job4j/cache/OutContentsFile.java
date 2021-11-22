@@ -8,7 +8,7 @@ public class OutContentsFile implements ManyOperation {
 
     @Override
     public void makeOperation(String dir) {
-        DirFileCache dirFileCache = new DirFileCache(dir);
+        AbstractCache<String, String> dirFileCache = new DirFileCache(dir);
         System.out.println("Введите имя файла содержимое которого нужно вывести: ");
         String key = scanner.nextLine();
         checkFile(dir + "\\" + key);
