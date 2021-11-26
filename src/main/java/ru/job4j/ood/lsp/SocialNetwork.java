@@ -4,6 +4,6 @@ public class SocialNetwork extends Messenger {
 
     @Override
     public void sendMessage(Account account, String text) {
-        System.out.println("сообщение отиправлено");
+        System.out.println("сообщение отправлено");
     }
 }

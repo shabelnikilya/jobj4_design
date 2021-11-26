@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DogShelter {
+
     List<Animals> dogs = new ArrayList<>();
 
     public List<Animals> allAnimals() {

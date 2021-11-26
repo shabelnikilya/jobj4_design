@@ -1,7 +1,6 @@
 package ru.job4j.ood.lsp;
 
 public class GetJob {
-
     public void listVacancy(Company company) {
         System.out.println("Перечесление штата");
     }

@@ -4,7 +4,7 @@ public class GetJobInGoogle extends  GetJob {
 
     @Override
     public void addHumanInCompany(Company company, Human human) {
-        if (company.getVacancy().getFree() && human.getAge() < 35) {
+        if (company.getVacancy().getFree() && human.getAge() < 37) {
             System.out.println("устроен в компанию google");
         }
     }
