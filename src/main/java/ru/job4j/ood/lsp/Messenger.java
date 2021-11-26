@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Messenger {
-
     private List<Account> accountList;
     private final Calendar sinceDate = new GregorianCalendar(2021, Calendar.FEBRUARY, 20);
 

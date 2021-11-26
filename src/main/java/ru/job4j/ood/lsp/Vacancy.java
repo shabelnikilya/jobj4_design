@@ -1,7 +1,6 @@
 package ru.job4j.ood.lsp;
 
 public class Vacancy {
-
     private String nameCompany;
     private String name;
     private int count;
