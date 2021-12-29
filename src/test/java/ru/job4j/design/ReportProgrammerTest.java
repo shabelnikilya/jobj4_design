@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
@@ -13,7 +14,7 @@ public class ReportProgrammerTest {
     @Test
     public void generateReportForProgrammer() {
         MemStore store = new MemStore();
-        Calendar now = new GregorianCalendar(2021, Calendar.FEBRUARY, 21);
+        Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
         Report engine = new ReportProgrammer(store);
@@ -21,8 +22,8 @@ public class ReportProgrammerTest {
         ReportProgrammer.getHtmlTextBeforeAdd(expect, System.lineSeparator());
         expect.append("            <tr>").append(System.lineSeparator())
                 .append("                <td>Ivan</td>").append(System.lineSeparator())
-                .append("                <td>Sun Feb 21 00:00:00 MSK 2021</td>").append(System.lineSeparator())
-                .append("                <td>Sun Feb 21 00:00:00 MSK 2021</td>").append(System.lineSeparator())
+                .append(String.format("                <td>%s</td>", now.getTime())).append(System.lineSeparator())
+                .append(String.format("                <td>%s</td>", now.getTime())).append(System.lineSeparator())
                 .append("                <td>100.0</td>").append(System.lineSeparator())
                 .append("            </tr>").append(System.lineSeparator());
         ReportProgrammer.afterAddEmployees(expect, System.lineSeparator());
