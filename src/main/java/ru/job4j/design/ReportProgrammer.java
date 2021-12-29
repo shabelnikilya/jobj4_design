@@ -16,14 +16,12 @@ public class ReportProgrammer implements Report {
         getHtmlTextBeforeAdd(str, del);
         String rowInTableHtml = "                <td>%s</td>";
         for (Employee em : store.findBy(filter)) {
-            if (filter.test(em)) {
                 str.append("            <tr>").append(del)
                         .append(String.format(rowInTableHtml, em.getName())).append(del)
                         .append(String.format(rowInTableHtml, em.getHired().getTime())).append(del)
                         .append(String.format(rowInTableHtml, em.getFired().getTime())).append(del)
                         .append(String.format(rowInTableHtml, em.getSalary())).append(del)
                         .append("            </tr>").append(del);
-            }
         }
         afterAddEmployees(str, del);
         return str.toString();
