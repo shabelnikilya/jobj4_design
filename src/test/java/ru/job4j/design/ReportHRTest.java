@@ -1,9 +1,7 @@
 package ru.job4j.design;
 
 import org.junit.Test;
-
 import java.util.Calendar;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
