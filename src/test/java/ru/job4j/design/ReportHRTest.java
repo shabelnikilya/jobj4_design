@@ -20,24 +20,23 @@ public class ReportHRTest {
         store.add(workerSecond);
         store.add(workerThird);
         Report engine = new ReportHR(store);
-        StringBuilder expect = new StringBuilder()
-                .append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
-                .append(workerSecond.getName()).append(";")
-                .append(workerSecond.getHired()).append(";")
-                .append(workerSecond.getFired()).append(";")
-                .append(workerSecond.getSalary()).append(";")
-                .append(System.lineSeparator())
-                .append(workerFirst.getName()).append(";")
-                .append(workerFirst.getHired()).append(";")
-                .append(workerFirst.getFired()).append(";")
-                .append(workerFirst.getSalary()).append(";")
-                .append(System.lineSeparator())
-                .append(workerThird.getName()).append(";")
-                .append(workerThird.getHired()).append(";")
-                .append(workerThird.getFired()).append(";")
-                .append(workerThird.getSalary()).append(";")
-                .append(System.lineSeparator());
-        assertThat(engine.generate(em -> em.getName().length() > 3), is(expect.toString()));
+        String expect = "Name; Hired; Fired; Salary;" +
+                System.lineSeparator() +
+                workerSecond.getName() + ";" +
+                workerSecond.getHired() + ";" +
+                workerSecond.getFired() + ";" +
+                workerSecond.getSalary() + ";" +
+                System.lineSeparator() +
+                workerFirst.getName() + ";" +
+                workerFirst.getHired() + ";" +
+                workerFirst.getFired() + ";" +
+                workerFirst.getSalary() + ";" +
+                System.lineSeparator() +
+                workerThird.getName() + ";" +
+                workerThird.getHired() + ";" +
+                workerThird.getFired() + ";" +
+                workerThird.getSalary() + ";" +
+                System.lineSeparator();
+        assertThat(engine.generate(em -> em.getName().length() > 3), is(expect));
     }
 }

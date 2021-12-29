@@ -16,14 +16,13 @@ public class ReportEngineTest {
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
         Report engine = new ReportEngine(store);
-        StringBuilder expect = new StringBuilder();
-                expect.append("Name; Hired; Fired; Salary;")
-                .append(System.lineSeparator())
-                .append(worker.getName()).append(";")
-                .append(worker.getHired()).append(";")
-                .append(worker.getFired()).append(";")
-                .append(worker.getSalary()).append(";")
-                .append(System.lineSeparator());
-        assertThat(engine.generate(em -> true), is(expect.toString()));
+        String expect = "Name; Hired; Fired; Salary;" +
+                System.lineSeparator() +
+                worker.getName() + ";" +
+                worker.getHired() + ";" +
+                worker.getFired() + ";" +
+                worker.getSalary() + ";" +
+                System.lineSeparator();
+        assertThat(engine.generate(em -> true), is(expect));
     }
 }
