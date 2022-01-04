@@ -15,9 +15,7 @@ public class ReportJsonFormat implements Report {
     public String generate(Predicate<Employee> filter) {
         StringBuilder str = new StringBuilder();
         Gson gson = new GsonBuilder().create();
-       // for (Employee employee : store.findBy(filter)) {
-            str.append(gson.toJson(store.findBy(filter)));
-        //}
+        str.append(gson.toJson(store.findBy(filter)));
         return str.toString();
     }
 }

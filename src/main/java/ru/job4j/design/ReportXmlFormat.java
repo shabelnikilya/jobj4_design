@@ -19,10 +19,8 @@ public class ReportXmlFormat implements Report {
         String str = null;
         Marshaller marshaller = getMarshaller();
         try (StringWriter writer = new StringWriter()) {
-                //for (Employee employee : store.findBy(filter)) {
-                    marshaller.marshal(new Employees(store.findBy(filter)), writer);
-                //}
-                str = writer.getBuffer().toString();
+            marshaller.marshal(new Employees(store.findBy(filter)), writer);
+            str = writer.getBuffer().toString();
         } catch (IOException | JAXBException e) {
             e.printStackTrace();
         }
