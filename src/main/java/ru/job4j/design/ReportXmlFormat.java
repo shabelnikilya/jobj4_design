@@ -19,9 +19,9 @@ public class ReportXmlFormat implements Report {
         String str = null;
         Marshaller marshaller = getMarshaller();
         try (StringWriter writer = new StringWriter()) {
-                for (Employee employee : store.findBy(filter)) {
-                    marshaller.marshal(employee, writer);
-                }
+                //for (Employee employee : store.findBy(filter)) {
+                    marshaller.marshal(new Employees(store.findBy(filter)), writer);
+                //}
                 str = writer.getBuffer().toString();
         } catch (IOException | JAXBException e) {
             e.printStackTrace();
@@ -32,7 +32,7 @@ public class ReportXmlFormat implements Report {
     public static Marshaller getMarshaller() {
         Marshaller marshaller = null;
         try {
-            JAXBContext context = JAXBContext.newInstance(Employee.class);
+            JAXBContext context = JAXBContext.newInstance(Employees.class);
             marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         } catch (JAXBException jaxb) {

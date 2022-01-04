@@ -18,12 +18,14 @@ public class ReportXmlFormatTest {
         Report report = new ReportXmlFormat(store);
         String expected =String.format(
                 "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n"
-                +  "<Employee>\n"
-                        + "    <name>Ivan</name>\n"
-                        + "    <hired>%s</hired>\n"
-                        + "    <fired>%s</fired>\n"
-                        + "    <salary>100.0</salary>\n"
-                + "</Employee>\n",
+                + "<Employees>\n"
+                    +  "    <employees>\n"
+                        + "        <name>Ivan</name>\n"
+                        + "        <hired>%s</hired>\n"
+                        + "        <fired>%s</fired>\n"
+                        + "        <salary>100.0</salary>\n"
+                    + "    </employees>\n"
+                + "</Employees>\n",
                 formatter.format(worker.getHired().getTime()),
                 formatter.format(worker.getFired().getTime()));
         assertThat(report.generate(x -> true), is(expected));
