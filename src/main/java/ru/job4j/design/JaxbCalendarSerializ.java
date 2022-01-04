@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class JaxbCalendarSerializ extends XmlAdapter<String, Calendar> {
-
     private final SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
     @Override

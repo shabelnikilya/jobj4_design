@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 import java.util.function.Predicate;
 
 public class ReportJsonFormat implements Report {
-
     private final Store store;
 
     public ReportJsonFormat(Store store) {
