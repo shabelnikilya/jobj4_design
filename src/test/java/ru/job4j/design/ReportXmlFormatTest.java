@@ -8,6 +8,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class ReportXmlFormatTest {
+
     private final SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
 
     @Test

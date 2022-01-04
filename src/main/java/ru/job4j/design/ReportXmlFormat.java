@@ -8,6 +8,7 @@ import java.io.StringWriter;
 import java.util.function.Predicate;
 
 public class ReportXmlFormat implements Report {
+
     private final Store store;
 
     public ReportXmlFormat(Store store) {

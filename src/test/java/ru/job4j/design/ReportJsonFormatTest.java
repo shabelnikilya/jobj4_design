@@ -1,10 +1,8 @@
 package ru.job4j.design;
 
 import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
