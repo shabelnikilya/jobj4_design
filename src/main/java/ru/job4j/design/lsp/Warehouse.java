@@ -10,10 +10,10 @@ public class Warehouse implements Storage {
     @Override
     public boolean addFoodInStorage(Food food) {
         long percent = percentExpirationProduct(food);
-        if (percent >= 25) {
+        if (percent >= 25 || !accept(food)) {
             return false;
         }
-        return accept(food) && storage.add(food);
+        return storage.add(food);
     }
 
     @Override

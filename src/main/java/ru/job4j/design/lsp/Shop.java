@@ -10,12 +10,12 @@ public class Shop implements Storage {
     @Override
     public boolean addFoodInStorage(Food food) {
         long percent = percentExpirationProduct(food);
-        if (percent < 25) {
+        if (percent < 25 || !accept(food)) {
             return false;
         } else if (percent > 75 && percent <= 100) {
             food.setPrice(food.getPrice() - food.getDiscount());
         }
-        return accept(food) && storage.add(food);
+        return storage.add(food);
     }
 
     @Override
