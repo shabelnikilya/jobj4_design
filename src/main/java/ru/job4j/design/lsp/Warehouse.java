@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse implements Storage {
-    private final int sizeWarehouse = 20;
-    private final List<Food> storage = new ArrayList<>(sizeWarehouse);
+    private final List<Food> storage = new ArrayList<>();
 
     @Override
     public boolean addFoodInStorage(Food food) {
-        long percent = percentExpirationProduct(food);
-        if (percent >= 25 || !accept(food)) {
-            return false;
-        }
-        return storage.add(food);
+        return accept(food) && storage.add(food);
     }
 
     @Override
     public boolean accept(Food food) {
-        return storage.size() < sizeWarehouse;
+        return percentExpirationProduct(food) < 25;
     }
 }
