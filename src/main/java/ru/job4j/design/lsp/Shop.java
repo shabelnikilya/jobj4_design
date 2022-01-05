@@ -1,33 +1,25 @@
 package ru.job4j.design.lsp;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 public class Shop implements Storage {
-
-    private List<Food> storage = new ArrayList<>();
-
-    public List<Food> getFood(String name) {
-        List<Food> rsl = new ArrayList<>();
-        storage.stream()
-                .filter(f -> f.getName().equals(name))
-                .forEach(rsl::add);
-        return rsl;
-    }
+    private final int sizeShop = 30;
+    private final List<Food> storage = new ArrayList<>(sizeShop);
 
     @Override
-    public void addFoodInStorage(Food food) {
-        long nowMinusCreated = Calendar.getInstance().getTimeInMillis() - food.getCreateDate().getTimeInMillis();
-        long expiryMinusCreated = food.getExpiryDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis();
-        long percent = nowMinusCreated > expiryMinusCreated ?
-                (nowMinusCreated / expiryMinusCreated + nowMinusCreated % expiryMinusCreated) * 100
-                : (nowMinusCreated % expiryMinusCreated) * 100;
+    public boolean addFoodInStorage(Food food) {
+        long percent = percentExpirationProduct(food);
         if (percent < 25) {
-            throw new IllegalArgumentException("Incorrect storage location");
+            return false;
         } else if (percent > 75 && percent <= 100) {
             food.setPrice(food.getPrice() - food.getDiscount());
         }
-        storage.add(food);
+        return accept(food) && storage.add(food);
+    }
+
+    @Override
+    public boolean accept(Food food) {
+        return storage.size() < sizeShop;
     }
 }
