@@ -8,7 +8,6 @@ public class Shop implements Storage {
 
     @Override
     public boolean addFoodInStorage(Food food) {
-        System.out.println(percentExpirationProduct(food));
         return accept(food) && storage.add(correctPrice(food));
     }
 
