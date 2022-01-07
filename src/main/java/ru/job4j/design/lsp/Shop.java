@@ -8,6 +8,7 @@ public class Shop implements Storage {
 
     @Override
     public boolean addFoodInStorage(Food food) {
+        System.out.println(percentExpirationProduct(food));
         return accept(food) && storage.add(correctPrice(food));
     }
 
@@ -17,9 +18,9 @@ public class Shop implements Storage {
     }
 
     public Food correctPrice(Food food) {
-        long percent = percentExpirationProduct(food);
+        double percent = percentExpirationProduct(food);
         if (percent > 75 && percent <= 100) {
-            food.setPrice(food.getPrice() - food.getPrice() * food.getDiscount());
+            food.setPrice(food.getPrice() - food.getPrice() * food.getDiscount() / 100);
         }
         return food;
     }

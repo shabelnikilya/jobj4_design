@@ -8,11 +8,9 @@ public interface Storage {
 
     boolean accept(Food food);
 
-     default long percentExpirationProduct(Food food) {
+     default double percentExpirationProduct(Food food) {
         long nowMinusCreated = Calendar.getInstance().getTimeInMillis() - food.getCreateDate().getTimeInMillis();
         long expiryMinusCreated = food.getExpiryDate().getTimeInMillis() - food.getCreateDate().getTimeInMillis();
-        return nowMinusCreated > expiryMinusCreated ?
-                (nowMinusCreated / expiryMinusCreated + nowMinusCreated % expiryMinusCreated) * 100
-                : (nowMinusCreated % expiryMinusCreated) * 100;
+        return (double) nowMinusCreated * 100 / expiryMinusCreated;
     }
 }
