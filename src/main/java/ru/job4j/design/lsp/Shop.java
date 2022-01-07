@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop implements Storage {
+
     private final List<Food> storage = new ArrayList<>();
 
     @Override
