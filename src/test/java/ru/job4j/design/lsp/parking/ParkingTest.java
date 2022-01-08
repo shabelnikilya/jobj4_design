@@ -7,52 +7,73 @@ public class ParkingTest {
 
     @Test
     public void parkingAddPassengerCarTrue() {
-        Car car = new Car("mazda", 1);
-        ParkingSpace parking = new Parking(20, 20);
-        parking.parking(car);
-        assertTrue(true);
-    }
-
-    @Test
-    public void parkingAddTruckTrue() {
-        Car car = new Car("mazda", 3);
-        ParkingSpace parking = new Parking(20, 20);
-        parking.parking(car);
+        Car mazdaSix = new MazdaPassenger("mazda 6");
+        Car mazdaCX = new MazdaPassenger("mazda CX-9");
+        Parking parking = new ParkingSpace(2, 1);
+        parking.parkingCar(mazdaSix);
+        parking.parkingCar(mazdaCX);
         assertTrue(true);
     }
 
     @Test
     public void parkingAddWhenNoPlacePassengerCarsFalse() {
-        Car carBmw = new Car("BMW", 1);
-        ParkingSpace parking = new Parking(0, 20);
-        assertFalse(parking.parking(carBmw));
+        Car mazdaSix = new MazdaPassenger("mazda 6");
+        Car mazdaCX = new MazdaPassenger("mazda CX-9");
+        Parking parking = new ParkingSpace(1, 1);
+        parking.parkingCar(mazdaSix);
+        parking.parkingCar(mazdaCX);
+        assertFalse(false);
     }
 
     @Test
-    public void parkingAddWhenNoPlaceTruckCarsTrue() {
-        Car carMazda = new Car("mazda", 3);
-        ParkingSpace parking = new Parking(5, 0);
-        parking.parking(carMazda);
+    public void parkingAddTruckTrue() {
+        Car car = new KamazTruck("Kamaz", 3);
+        Parking parking = new ParkingSpace(2, 1);
+        parking.parkingCar(car);
         assertTrue(true);
     }
 
     @Test
-    public void parkingAddWhenNoSpaceInSizeEverywhereFalse() {
-        Car carMazda = new Car("mazda", 3);
-        Car carBmw = new Car("BMW", 3);
-        ParkingSpace parking = new Parking(2, 3);
-        parking.parking(carMazda);
-        parking.parking(carBmw);
+    public void parkingAddTwoTruckTrue() {
+        Car firstTruck = new KamazTruck("Kamaz", 3);
+        Car secondTruck = new KamazTruck("Kamaz", 2);
+        Parking parking = new ParkingSpace(2, 1);
+        parking.parkingCar(firstTruck);
+        parking.parkingCar(secondTruck);
+        assertTrue(true);
+    }
+
+    @Test
+    public void parkingAddTwoTruckFalse() {
+        Car firstTruck = new KamazTruck("Kamaz", 3);
+        Car secondTruck = new KamazTruck("Kamaz", 2);
+        Parking parking = new ParkingSpace(2, 1);
+        parking.parkingCar(secondTruck);
+        parking.parkingCar(firstTruck);
         assertFalse(false);
     }
 
     @Test
-    public void parkingAddWhenNoPlaceTruckCarsAndOccupiedPassengerCarPlace() {
-        Car carMazda = new Car("mazda", 3);
-        Car carBmw = new Car("BMW", 1);
-        ParkingSpace parking = new Parking(3, 0);
-        parking.parking(carMazda);
-        parking.parking(carBmw);
+    public void parkingAddTwoTruckAndOnePassengerCarFalse() {
+        Car firstTruck = new KamazTruck("Kamaz", 3);
+        Car secondTruck = new KamazTruck("Kamaz", 2);
+        Car passenger = new MazdaPassenger("mazda 6");
+        Parking parking = new ParkingSpace(2, 1);
+        parking.parkingCar(firstTruck);
+        parking.parkingCar(passenger);
+        parking.parkingCar(secondTruck);
         assertFalse(false);
+    }
+
+    @Test
+    public void parkingAddOneTruckAndTwoPassengerCarTrue() {
+        Car truck = new KamazTruck("Kamaz", 2);
+        Car firstPassenger = new MazdaPassenger("mazda 6");
+        Car secondPassenger = new MazdaPassenger("mazda CX");
+        Parking parking = new ParkingSpace(4, 0);
+        parking.parkingCar(firstPassenger);
+        parking.parkingCar(truck);
+        parking.parkingCar(secondPassenger);
+        assertTrue(true);
     }
 }
