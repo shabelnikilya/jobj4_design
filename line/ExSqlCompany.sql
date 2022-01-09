@@ -1,14 +1,14 @@
 CREATE TABLE company
 (
-    id integer NOT NULL,
-    name character varying,
+    id INTEGER NOT NULL,
+    name CHARACTER VARYING,
     CONSTRAINT company_pkey PRIMARY KEY (id)
 );
 CREATE TABLE person
 (
-    id integer NOT NULL,
-    name character varying,
-    company_id integer references company(id),
+    id INTEGER NOT NULL,
+    name CHARACTER VARYING,
+    company_id INTEGER REFERENCES company(id),
     CONSTRAINT person_pkey PRIMARY KEY (id)
 );
 INSERT INTO company(id, name) VALUES (2, 'adidas');
@@ -30,8 +30,7 @@ INSERT INTO person(id, name, company_id) VALUES (10, 'Ivanuch', 1);
 
 SELECT p.name, c.name FROM person p LEFT JOIN company c ON (p.company_id = c.id) WHERE c.id != 5;
 
-WITH max_company_peoples AS
-(
-SELECT c.name AS name_company, COUNT(c.name) AS peoples FROM company c LEFT JOIN person p ON (p.company_id = c.id) GROUP BY c.name
-)
-SELECT name_company, peoples FROM max_company_peoples mcp WHERE mcp.peoples = (SELECT MAX(peoples) FROM max_company_peoples);
+SELECT c.name AS name_company, COUNT(c.name) AS peoples FROM company c
+LEFT JOIN person p ON (p.company_id = c.id) GROUP BY c.name HAVING
+COUNT(c.name) = (SELECT COUNT(company_id) FROM person
+GROUP BY company_id ORDER BY COUNT(company_id) DESC LIMIT 1)
