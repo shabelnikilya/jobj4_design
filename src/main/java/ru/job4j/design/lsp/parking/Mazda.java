@@ -1,10 +1,10 @@
 package ru.job4j.design.lsp.parking;
 
-public class MazdaPassenger implements Car{
+public class Mazda implements Car{
     private final String name;
     private final int size = 1;
 
-    public MazdaPassenger(String name) {
+    public Mazda(String name) {
         this.name = name;
     }
 
@@ -12,6 +12,7 @@ public class MazdaPassenger implements Car{
         return name;
     }
 
+    @Override
     public int getSize() {
         return size;
     }
